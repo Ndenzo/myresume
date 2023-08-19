@@ -268,7 +268,47 @@ $(function() {
     }
   });
 
+  // $("#form").submit(function() {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "mail.php",
+  //     data: $(this).serialize()
+  //   }).done(function() {
+  //
+  //     var tl = anime.timeline({
+  //       easing: 'easeOutExpo',
+  //     });
+  //
+  //     tl
+  //       .add({
+  //         targets: '.art-submit',
+  //         opacity: 0,
+  //         scale: .5,
+  //       })
+  //       .add({
+  //         targets: '.art-success',
+  //         scale: 1,
+  //         height: '45px',
+  //       })
+  //   });
+  //   return false;
+  // });
 
+  $("#form").submit(function () {
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username: "ndenz28@gmail.com",
+      Password: "Heligoland2800-",
+      To: 'ndene.diahame@gmail.com',
+      From:  $('#name').val(),
+      Subject: "Ndenzo Resume : "+$('#email').val(),
+      Body: $('#message').val(),
+    })
+        .then(function (message) {
+          alert("mail sent successfully")
+        });
+    return false;
+  });
 
   // portfolio filter
   $('.art-filter a').on('click', function() {
